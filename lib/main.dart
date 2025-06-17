@@ -101,6 +101,47 @@ class ResultsPage extends StatelessWidget {
 
   const ResultsPage({super.key, required this.lastPeriodDate});
 
+  String _getBabySize(int weeks) {
+    if (weeks < 4) return "Poppy seed (1-2mm)";
+    if (weeks < 5) return "Sesame seed (2-3mm)";
+    if (weeks < 6) return "Lentil (4-5mm)";
+    if (weeks < 7) return "Blueberry (7-9mm)";
+    if (weeks < 8) return "Kidney bean (1.6cm)";
+    if (weeks < 9) return "Grape (2.3cm)";
+    if (weeks < 10) return "Cherry (2.5cm)";
+    if (weeks < 11) return "Strawberry (3.1cm)";
+    if (weeks < 12) return "Lime (4.1cm)";
+    if (weeks < 13) return "Peach (5.4cm)";
+    if (weeks < 14) return "Lemon (7.4cm)";
+    if (weeks < 15) return "Apple (8.7cm)";
+    if (weeks < 16) return "Avocado (10.1cm)";
+    if (weeks < 17) return "Turnip (11.6cm)";
+    if (weeks < 18) return "Bell pepper (12.5cm)";
+    if (weeks < 19) return "Tomato (14.2cm)";
+    if (weeks < 20) return "Banana (15.3cm)";
+    if (weeks < 21) return "Carrot (16.4cm)";
+    if (weeks < 22) return "Spaghetti squash (17.2cm)";
+    if (weeks < 23) return "Large mango (19.0cm)";
+    if (weeks < 24) return "Corn (20.3cm)";
+    if (weeks < 25) return "Rutabaga (21.8cm)";
+    if (weeks < 26) return "Scallion (23.0cm)";
+    if (weeks < 27) return "Cauliflower (24.0cm)";
+    if (weeks < 28) return "Eggplant (25.4cm)";
+    if (weeks < 29) return "Butternut squash (26.7cm)";
+    if (weeks < 30) return "Cabbage (27.9cm)";
+    if (weeks < 31) return "Coconut (29.2cm)";
+    if (weeks < 32) return "Jicama (30.5cm)";
+    if (weeks < 33) return "Pineapple (31.8cm)";
+    if (weeks < 34) return "Cantaloupe (33.0cm)";
+    if (weeks < 35) return "Honeydew melon (34.3cm)";
+    if (weeks < 36) return "Romaine lettuce (35.6cm)";
+    if (weeks < 37) return "Swiss chard (36.8cm)";
+    if (weeks < 38) return "Leek (38.1cm)";
+    if (weeks < 39) return "Mini watermelon (39.4cm)";
+    if (weeks < 40) return "Pumpkin (40.6cm)";
+    return "Watermelon (41.9cm)";
+  }
+
   @override
   Widget build(BuildContext context) {
     final DateTime now = DateTime.now();
@@ -108,6 +149,7 @@ class ResultsPage extends StatelessWidget {
     final int weeks = daysSinceLastPeriod ~/ 7;
     final int days = daysSinceLastPeriod % 7;
     final DateTime expectedDueDate = lastPeriodDate.add(const Duration(days: 280));
+    final String babySize = _getBabySize(weeks);
 
     return Scaffold(
       appBar: AppBar(
@@ -142,6 +184,16 @@ class ResultsPage extends StatelessWidget {
                     Text(
                       '${expectedDueDate.day}/${expectedDueDate.month}/${expectedDueDate.year}',
                       style: const TextStyle(fontSize: 24, color: Colors.blue),
+                    ),
+                    const SizedBox(height: 20),
+                    const Text(
+                      'Baby size:',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      babySize,
+                      style: const TextStyle(fontSize: 20, color: Colors.green),
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ),
